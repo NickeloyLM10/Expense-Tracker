@@ -22,11 +22,10 @@ public class Expense {
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
-    public Expense(Long id, String category, Double amount, LocalDate localDate, User user) {
+    public Expense(Long id, String category, Double amount, User user) {
         this.id = id;
         this.category = category;
         this.amount = amount;
-        this.localDate = localDate;
         this.user = user;
     }
 

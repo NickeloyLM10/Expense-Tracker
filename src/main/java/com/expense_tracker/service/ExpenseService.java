@@ -84,16 +84,14 @@ public class ExpenseService {
         return new ExpenseDTO(
                 expense.getCategory() ,
                 expense.getAmount() ,
-                expense.getUser().getId(),
-                expense.getLocalDate()
+                expense.getUser().getId()
                 );
     }
     public Expense convertToEntity(ExpenseDTO expenseDTO, User user){
         return new Expense(
                 null,
                 expenseDTO.getCategory() ,
-                expenseDTO.getAmount() ,
-                expenseDTO.getLocalDate(),
+                expenseDTO.getAmount(),
                 user
         );
     }
