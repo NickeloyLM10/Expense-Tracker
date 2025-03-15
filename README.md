@@ -20,7 +20,7 @@ A **complete Expense Tracker Backend API** that allows users to **register, logi
 ---
 
 ## 🎯 **Folder Structure:**
-
+```
 expense-tracker-backend/
 │
 ├── src
@@ -42,7 +42,7 @@ expense-tracker-backend/
 ├── pom.xml
 └── README.md
 
-
+```
 ---
 
 ## ✅ **Features Implemented:**
