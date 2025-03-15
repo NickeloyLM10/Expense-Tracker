@@ -1,6 +1,7 @@
 package com.expense_tracker.controller;
 
 import com.expense_tracker.dto.UserDTO;
+import com.expense_tracker.service.AuthenticationService;
 import com.expense_tracker.service.UserService;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,19 +18,14 @@ public class UserController {
         this.userService = userService;
     }
 
-    @PostMapping("/register")
-    public UserDTO registerUser(@RequestBody UserDTO userDTO){
-        return userService.createUser(userDTO);
-    }
-
     @GetMapping("/{id}")
     public Optional<UserDTO> getUser(@PathVariable Long id){
         return userService.findUserById(id);
     }
 
-    @PostMapping("/update/{id}")
-    public UserDTO updateUser(@RequestBody UserDTO userDTO, @PathVariable Long id){
-        return userService.updateUser(userDTO, id);
+    @PostMapping("/update")
+    public UserDTO updateUser(@RequestBody UserDTO userDTO){
+        return userService.updateUser(userDTO, userDTO.id());
     }
 
     @DeleteMapping("/{id}")

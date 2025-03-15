@@ -23,7 +23,7 @@ public class BudgetService {
     }
 
     public BudgetDTO createBudget(BudgetDTO budgetDTO){
-        User user = userRepository.findById(budgetDTO.getUserId())
+        User user = userRepository.findById(budgetDTO.userId())
                 .orElseThrow(() -> new RuntimeException("User not found"));
         Budget budget = convertToEntity(budgetDTO,user);
         Budget savedBudget = budgetRepository.save(budget);
@@ -33,9 +33,9 @@ public class BudgetService {
     public BudgetDTO updateBudget(BudgetDTO budgetDTO, Long id){
         Budget existingBudget = budgetRepository.findById(id)
                 .orElseThrow(()->new RuntimeException("Budget not found!"));
-        existingBudget.setBudgetLimit(budgetDTO.getBudgetLimit());
-        existingBudget.setCategory(budgetDTO.getCategory());
-        existingBudget.setMonth(budgetDTO.getMonth());
+        existingBudget.setBudgetLimit(budgetDTO.budgetLimit());
+        existingBudget.setCategory(budgetDTO.category());
+        existingBudget.setMonth(budgetDTO.month());
         Budget updatedBudget = budgetRepository.save(existingBudget);
         return convertToDTO(updatedBudget);
     }
@@ -95,9 +95,9 @@ public class BudgetService {
     }
     public Budget convertToEntity(BudgetDTO budgetDTO, User user){
         return new Budget(
-                budgetDTO.getCategory(),
-                budgetDTO.getMonth(),
-                budgetDTO.getBudgetLimit(),
+                budgetDTO.category(),
+                budgetDTO.month(),
+                budgetDTO.budgetLimit(),
                 user
         );
     }

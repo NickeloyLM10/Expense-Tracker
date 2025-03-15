@@ -22,7 +22,7 @@ public class ExpenseService {
     }
 
     public ExpenseDTO createExpense(ExpenseDTO expenseDTO){
-        User user = userRepository.findById(expenseDTO.getUserId())
+        User user = userRepository.findById(expenseDTO.userId())
                 .orElseThrow(()-> new RuntimeException("User does not exist!"));
         Expense expense = convertToEntity(expenseDTO , user);
         Expense savedExpense = expenseRepository.save(expense);
@@ -38,8 +38,8 @@ public class ExpenseService {
     public ExpenseDTO updateExpense(ExpenseDTO expenseDTO, Long id){
         Expense expense = expenseRepository.findById(id)
                 .orElseThrow(()->new RuntimeException("No expense found!"));
-        expense.setAmount(expenseDTO.getAmount());
-        expense.setCategory(expenseDTO.getCategory());
+        expense.setAmount(expenseDTO.amount());
+        expense.setCategory(expenseDTO.category());
         Expense updatedExpense = expenseRepository.save(expense);
         return convertToDto(updatedExpense);
     }
@@ -90,8 +90,8 @@ public class ExpenseService {
     public Expense convertToEntity(ExpenseDTO expenseDTO, User user){
         return new Expense(
                 null,
-                expenseDTO.getCategory() ,
-                expenseDTO.getAmount(),
+                expenseDTO.category() ,
+                expenseDTO.amount(),
                 user
         );
     }
