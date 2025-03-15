@@ -21,7 +21,6 @@ A **complete Expense Tracker Backend API** that allows users to **register, logi
 
 ## 🎯 **Folder Structure:**
 
-```yaml
 expense-tracker-backend/
 │
 ├── src
