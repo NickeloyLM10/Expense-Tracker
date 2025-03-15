@@ -159,13 +159,6 @@ expense-tracker-backend/
 > Run ExpenseTrackerApplication.java
 ```
 
----
-
-## 📍 **Postman Collection for All APIs:**
-🔗 **[Download Postman Collection](#)**  
-
----
-
 ## 🎯 **Upcoming Features:**
 - ✅ Add JWT Authentication  
 - ✅ Add Swagger API Documentation  
