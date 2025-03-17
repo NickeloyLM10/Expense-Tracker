@@ -25,10 +25,10 @@ A **complete Expense Tracker Backend API** that allows users to **track expenses
 ```
 
 
+expense-tracker-backend/ │ ├── src │ ├── main │ │ ├── java │ │ │ └── com.expense_tracker │ │ │ ├── controller │ │ │ ├── dto │ │ │ ├── model │ │ │ ├── repository │ │ │ ├── service │ │ │ └── security │ │ └── resources │ │ ├── application.properties │ ├── test │ │ └── java │ └── target │ ├── pom.xml └── README.md
+
 
 ```
-
-expense-tracker-backend/ │ ├── src │ ├── main │ │ ├── java │ │ │ └── com.expense_tracker │ │ │ ├── controller │ │ │ ├── dto │ │ │ ├── model │ │ │ ├── repository │ │ │ ├── service │ │ │ └── security │ │ └── resources │ │ ├── application.properties │ ├── test │ │ └── java │ └── target │ ├── pom.xml └── README.md
 
 ---
 
