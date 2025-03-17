@@ -18,17 +18,6 @@
 ## 🎯 **Project Overview:**
 A **complete Expense Tracker Backend API** that allows users to **track expenses, manage budgets, and view detailed reports**, with **secure user authentication and JWT-based authorization.**  
 
----
-
-## 🎯 **Folder Structure:**
-
-```
-
-
-expense-tracker-backend/ │ ├── src │ ├── main │ │ ├── java │ │ │ └── com.expense_tracker │ │ │ ├── controller │ │ │ ├── dto │ │ │ ├── model │ │ │ ├── repository │ │ │ ├── service │ │ │ └── security │ │ └── resources │ │ ├── application.properties │ ├── test │ │ └── java │ └── target │ ├── pom.xml └── README.md
-
-
-```
 
 ---
 
