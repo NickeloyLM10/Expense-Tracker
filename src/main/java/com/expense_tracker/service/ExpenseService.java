@@ -1,8 +1,10 @@
 package com.expense_tracker.service;
 
 import com.expense_tracker.dto.ExpenseDTO;
+import com.expense_tracker.model.Budget;
 import com.expense_tracker.model.Expense;
 import com.expense_tracker.model.User;
+import com.expense_tracker.repository.BudgetRepository;
 import com.expense_tracker.repository.ExpenseRepository;
 import com.expense_tracker.repository.UserRepository;
 import org.springframework.data.domain.Page;
@@ -15,16 +17,29 @@ import java.util.List;
 public class ExpenseService {
     private final ExpenseRepository expenseRepository;
     private final UserRepository userRepository;
+    private final BudgetRepository budgetRepository;
 
-    public ExpenseService(ExpenseRepository expenseRepository, UserRepository userRepository) {
+    public ExpenseService(ExpenseRepository expenseRepository, UserRepository userRepository, BudgetRepository budgetRepository) {
         this.expenseRepository = expenseRepository;
         this.userRepository = userRepository;
+        this.budgetRepository = budgetRepository;
     }
 
     public ExpenseDTO createExpense(ExpenseDTO expenseDTO){
         User user = userRepository.findById(expenseDTO.userId())
                 .orElseThrow(()-> new RuntimeException("User does not exist!"));
-        Expense expense = convertToEntity(expenseDTO , user);
+        Budget budget = budgetRepository.findByUserIdAndCategory(expenseDTO.userId(), expenseDTO.category())
+                .orElseThrow(()-> new RuntimeException("No budget set for this category"));
+        double newTotalExpense = budget.getTotalExpense() + expenseDTO.amount();
+
+        if(newTotalExpense > budget.getBudgetLimit()){
+            throw new RuntimeException("Expense exceeds the budget limit for this category");
+        }
+
+        budget.setTotalExpense(newTotalExpense);
+        budgetRepository.save(budget);
+
+        Expense expense = convertToEntity(expenseDTO, user);
         Expense savedExpense = expenseRepository.save(expense);
 
         return convertToDto(savedExpense);

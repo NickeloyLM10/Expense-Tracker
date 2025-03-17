@@ -6,6 +6,7 @@ import com.expense_tracker.repository.UserRepository;
 import com.expense_tracker.security.JwtUtil;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -16,8 +17,8 @@ import java.util.Optional;
 public class AuthenticationService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
-    private AuthenticationManager authenticationManager;
-    private JwtUtil jwtUtil;
+    private final AuthenticationManager authenticationManager;
+    private final JwtUtil jwtUtil;
 
     public AuthenticationService(UserRepository userRepository, PasswordEncoder passwordEncoder, AuthenticationManager authenticationManager, JwtUtil jwtUtil) {
         this.userRepository = userRepository;
@@ -34,6 +35,7 @@ public class AuthenticationService {
 
     public String authenticateUser(String email, String password){
         authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(email,password));
+
         User user = userRepository.findByEmail(email)
                 .orElseThrow(()->new UsernameNotFoundException("User not found!"));
 

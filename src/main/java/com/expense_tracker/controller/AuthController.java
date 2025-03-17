@@ -1,6 +1,7 @@
 package com.expense_tracker.controller;
 
 import com.expense_tracker.dto.UserDTO;
+import com.expense_tracker.model.User;
 import com.expense_tracker.service.AuthenticationService;
 import org.springframework.web.bind.annotation.*;
 

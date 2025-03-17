@@ -16,6 +16,8 @@ public class Budget {
 
     private Double budgetLimit;
 
+    private Double totalExpense;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
@@ -25,6 +27,7 @@ public class Budget {
         this.month = month;
         this.budgetLimit = budgetLimit;
         this.user = user;
+        this.totalExpense = 0.0;
     }
 
     public Budget(){
@@ -69,5 +72,13 @@ public class Budget {
 
     public String getMonth() {
         return month;
+    }
+
+    public Double getTotalExpense() {
+        return totalExpense;
+    }
+
+    public void setTotalExpense(Double totalExpense) {
+        this.totalExpense = totalExpense;
     }
 }

@@ -1,5 +1,6 @@
 package com.expense_tracker.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
@@ -16,6 +17,8 @@ public class Expense {
 
     private Double amount;
 
+
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate localDate;
 
     @ManyToOne(fetch = FetchType.LAZY)

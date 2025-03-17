@@ -25,6 +25,8 @@ public class BudgetService {
     public BudgetDTO createBudget(BudgetDTO budgetDTO){
         User user = userRepository.findById(budgetDTO.userId())
                 .orElseThrow(() -> new RuntimeException("User not found"));
+
+        System.out.println("User Found: " + user.getEmail());
         Budget budget = convertToEntity(budgetDTO,user);
         Budget savedBudget = budgetRepository.save(budget);
         return convertToDTO(savedBudget);
@@ -62,11 +64,10 @@ public class BudgetService {
                 .toList();
     }
 
-    public List<BudgetDTO> findBudgetByUserAndCategory(Long userId, String category){
-        List<Budget> budgets = budgetRepository.findByUserIdAndCategory(userId,category);
-        return budgets.stream()
-                .map(this::convertToDTO)
-                .toList();
+    public BudgetDTO findBudgetByUserAndCategory(Long userId, String category){
+        Budget budget = budgetRepository.findByUserIdAndCategory(userId,category)
+                .orElseThrow(()->new RuntimeException("Budget not found!"));
+        return convertToDTO(budget);
     }
 
     public List<BudgetDTO> sortBudgets(Long userId, String order){

@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin(origins = "http://localhost:5173")
 @RestController
 @RequestMapping("/budget")
 public class BudgetController {
@@ -39,7 +40,7 @@ public class BudgetController {
     }
 
     @GetMapping("/filter/category/{userId}/{category}")
-    public List<BudgetDTO> getBudgetByCategory(@PathVariable Long userId,@PathVariable String category){
+    public BudgetDTO getBudgetByCategory(@PathVariable Long userId,@PathVariable String category){
         return budgetService.findBudgetByUserAndCategory(userId, category);
     }
 
